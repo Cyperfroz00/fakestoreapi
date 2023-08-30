@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.indigo,
         ),
         body: FutureBuilder<List>(
+
             future: _getProduct(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -44,13 +45,20 @@ class _HomeScreenState extends State<HomeScreen> {
               if (snapshot.data!.isEmpty) {
                 return Text("Data Emthy");
               }
-              return ListView.builder(
+              return GridView.builder(
+                padding: EdgeInsets.all(15),
                 itemCount: snapshot.data!.length,
                 itemBuilder: (contex, index) {
-                  return Image.network(
-                    snapshot.data![index]['image'],
+                  return Column(
+                    children: [
+                      Container(
+                        child:Image.network(
+                          snapshot.data![index]['image'] ,width: 100,
+                        ),
+                      )
+                    ],
                   );
-                },
+                },gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               );
             }),
       ),
