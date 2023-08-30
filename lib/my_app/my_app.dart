@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.indigo,
         ),
         body: FutureBuilder<List>(
-
             future: _getProduct(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
